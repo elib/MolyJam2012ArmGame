@@ -23,7 +23,8 @@ package com.arms
 		
 		public function Player() 
 		{
-			super(0,0);
+			super(0, 0);
+			kill();
 			
 			createGraphic(16, 16, 0xff0000ff);
 			

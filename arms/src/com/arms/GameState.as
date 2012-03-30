@@ -41,6 +41,8 @@ package com.arms
 			_player = new Player();
 			this.add(_player);
 			
+			spawnPlayer();
+			
 			
 			_debugBar = new FlxSprite(0, FlxG.height - 10);
 			_debugBar.createGraphic(FlxG.width, 10, 0xffff0000);
@@ -50,6 +52,12 @@ package com.arms
 			FlxG.follow(_player, 2);
 			FlxG.followBounds(_environment.GetObstacles().left, _environment.GetObstacles().top, _environment.GetObstacles().right, _environment.GetObstacles().bottom);
 			
+		}
+		
+		private function spawnPlayer():void
+		{
+			var point:FlxPoint = (_environment.spawnPoints[0] as FlxPoint);
+			_player.reset(point.x, point.y);
 		}
 		
 		 
