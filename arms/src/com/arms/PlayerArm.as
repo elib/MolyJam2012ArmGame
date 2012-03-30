@@ -1,17 +1,21 @@
 package com.arms 
 {
-	import org.flixel.FlxSprite;
+	import org.flixel.*;
+	import com.base.*;
 	
 	/**
 	 * ...
 	 * @author elibrody
 	 */
-	public class PlayerArm extends FlxSprite 
+	public class PlayerArm extends B2FlxSprite 
 	{
 		
-		public function PlayerArm(parentSprite:FlxSprite) 
+		public function PlayerArm() 
 		{
-			super(X, Y, SimpleGraphic);
+			var gs:GameState = FlxG.state as GameState;
+			super(10, 10, 10, 10, gs._world);
+			
+			
 			
 		}
 	}
