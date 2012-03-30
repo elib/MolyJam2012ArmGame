@@ -48,13 +48,13 @@ package com.arms
 			
 			//generate a CSV from the layer 'map' with all the tiles from the TileSet 'tiles'
 			var mapCsv:String = tmx_map.getLayer('Collision').toCsv(tmx_map.getTileSet('foreground_colliding'));
-			_map.loadMap(mapCsv, ImgTiles, Arms.TILESIZE, Arms.TILESIZE, FlxTilemap.OFF, 0, 2, 2);
+			_map.loadMap(mapCsv, ImgTiles, Arms.TILESIZE, Arms.TILESIZE);
 			
 			mapCsv = tmx_map.getLayer('Foreground').toCsv(tmx_map.getTileSet('foreground_colliding'));
-			_foremap.loadMap(mapCsv, ImgTiles, Arms.TILESIZE, Arms.TILESIZE, FlxTilemap.OFF, 0);
+			_foremap.loadMap(mapCsv, ImgTiles, Arms.TILESIZE, Arms.TILESIZE);
 			
 			mapCsv = tmx_map.getLayer('Background').toCsv(tmx_map.getTileSet('foreground_colliding'));
-			_bgmap.loadMap(mapCsv, ImgTiles, Arms.TILESIZE, Arms.TILESIZE, FlxTilemap.OFF, 0);
+			_bgmap.loadMap(mapCsv, ImgTiles, Arms.TILESIZE, Arms.TILESIZE);
 			_bgmap.scrollFactor.x = _bgmap.scrollFactor.y = 0.2;
 			
 			this.add(_bgmap);

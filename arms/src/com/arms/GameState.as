@@ -33,12 +33,8 @@ package com.arms
 		}
 		
 		 
+
 		
-		override public function draw():void 
-		{
-			
-			super.draw();
-		}
 		override public function update():void
 		{
 			super.update();	
