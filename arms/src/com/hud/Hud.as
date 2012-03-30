@@ -14,8 +14,8 @@ package com.hud
 			
 			_light = new FlxSprite(0, 0);
 			_rage = new FlxSprite(0, 10);
-			_light.createGraphic(FlxG.width, 10, 0xffff0000);	
-			_rage.createGraphic(FlxG.width, 10, 0xff0000ff);
+			_light.makeGraphic(FlxG.width, 10, 0xffff0000);	
+			_rage.makeGraphic(FlxG.width, 10, 0xff0000ff);
 			
 			_light.scrollFactor = new FlxPoint(0, 0);
 			_rage.scrollFactor = new FlxPoint(0, 0);

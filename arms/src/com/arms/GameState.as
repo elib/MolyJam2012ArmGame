@@ -21,14 +21,14 @@ package com.arms
 
 		public function GameState() 
 		{
+			
 			super();
 			_coolFilter = new ShaderFilter(_coolShader);
 			
 			_coolFilter.shader.data.lightPosition.value = [100, 150];
 			_coolFilter.shader.data.radius.value = [50];
 			
-			
-			this.filters = [_coolFilter];
+			//FlxG._game.filters = [_coolFilter];
 
 
 		}
@@ -48,8 +48,11 @@ package com.arms
 			_hud = new Hud();
 			this.add(_hud);
 			
-			FlxG.follow(_player, 2);
-			FlxG.followBounds(_environment.GetObstacles().left, _environment.GetObstacles().top, _environment.GetObstacles().right, _environment.GetObstacles().bottom);
+			FlxG.camera.follow(_player, FlxCamera.STYLE_TOPDOWN);
+			//FlxG.camera.setBounds(_environment.GetObstacles().left, _environment.GetObstacles()..top, _environment.GetObstacles().right, _environment.GetObstacles().bottom);
+			
+			//FlxG.follow(_player, 2);
+			//FlxG.followBounds(_environment.GetObstacles().left, _environment.GetObstacles().top, _environment.GetObstacles().right, _environment.GetObstacles().bottom);
 			
 		}
 		
@@ -59,28 +62,20 @@ package com.arms
 			_player.reset(point.x, point.y);
 		}
 		
-		override public function render():void 
-		{
-			super.render();
-			FlxG.buffer.applyFilter(FlxG.buffer,new Rectangle(0,0,FlxG.width,FlxG.width),new Point(0,0),_coolFilter);
-			_hud.render();
-		}
-		
 		 
-		override public function postProcess():void 
+		override public function draw():void 
 		{
-			super.postProcess();
-			
-		    //FlxG.buffer.applyFilter(FlxG.buffer,new Rectangle(0,0,FlxG.width,FlxG.width),new Point(0,0),_coolFilter);
-			s
-	
+			super.draw();
+
+		    FlxG.camera.buffer.applyFilter(FlxG.camera.buffer,new Rectangle(0,0,512, 512),new Point(0,0),_coolFilter);
+			_hud.draw();
+
 		}
 		
 		var lightFuzzyness:Number = 0;
 		override public function update():void
 		{
 			super.update();	
-		
 			lightFuzzyness += FlxG.elapsed;
 			var playerXY:FlxPoint = _player.getScreenXY()
 			
@@ -89,7 +84,7 @@ package com.arms
 			//debugBar.scale.x = _player.babyShakenAmount;
 			
 			
-			FlxU.collide(_player, _environment.GetObstacles());
+			FlxG.collide(_player, _environment.GetObstacles());
 
 		}
 	}
