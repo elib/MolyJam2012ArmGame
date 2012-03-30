@@ -11,7 +11,7 @@ package com.arms
 		private var _environment:Environment;
 		
 		private var _debugBar:FlxSprite;
-		[Embed(source = "/../../data/filter.pbj", mimeType = "application/octet-stream")] private var FilterCode:Class;
+		[Embed(source = "/../../data/fade.pbj", mimeType = "application/octet-stream")] private var FilterCode:Class;
 
 
 		var _coolShader:Shader = new Shader(new FilterCode());
