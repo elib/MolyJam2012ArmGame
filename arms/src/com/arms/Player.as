@@ -9,8 +9,9 @@ package com.arms
 		public var babyShakenAmount:Number;
 		
 		private const _MAX_FRAMES_SHAKEN:int = 20;
-		private const _EXP_WARMUP_TIMESCALE:Number = 3; //units are [s]
-		private const _EXP_COOLDOWN_TIMESCALE:Number = 3;
+		private const _EXP_WARMUP_TIMESCALE:Number = 2; //units are [s]
+		private const _EXP_COOLDOWN_TIMESCALE:Number = 2;
+		private const _CUTOFF:Number = 0.1;
 		
 		private var _whenStartedWarmup:Number = 0;
 		private var _whenStartedCooldown:Number = 0;
@@ -58,9 +59,6 @@ package com.arms
 				}
 			}
 			
-			FlxG.log("Frames: " + _numFramesBabyShaken);
-			
-			
 			var amount:Number;
 			if (_numFramesBabyShaken > 0)
 			{
@@ -68,11 +66,15 @@ package com.arms
 				_whenStartedCooldown = 0;
 				if (_whenStartedWarmup == 0)
 				{
+					//REVERSE LOOKUP
 					_whenStartedWarmup = (_EXP_WARMUP_TIMESCALE * Math.log(1 - babyShakenAmount) + _totalTime);
 				}
 				
 				babyShakenAmount = 1.0 - Math.exp( - (_totalTime - _whenStartedWarmup) / _EXP_WARMUP_TIMESCALE);
-				//babyShakenAmount = Math.max(amount, babyShakenAmount); //so it starts up from where it should
+				if (babyShakenAmount > (1 - _CUTOFF))
+				{
+					babyShakenAmount = 1;	
+				}
 			}
 			else
 			{
@@ -83,7 +85,10 @@ package com.arms
 				}
 				
 				babyShakenAmount = Math.exp( - (_totalTime - _whenStartedCooldown) / _EXP_COOLDOWN_TIMESCALE);
-				//babyShakenAmount = Math.min(amount, babyShakenAmount); //so it starts up from where it should
+				if (babyShakenAmount < _CUTOFF)
+				{
+					babyShakenAmount = 0;	
+				}
 			}
 		}	
 	}
