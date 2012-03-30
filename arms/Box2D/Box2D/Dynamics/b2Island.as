@@ -172,15 +172,27 @@ public class b2Island
 		// Integrate velocities and apply damping.
 		for (i = 0; i < m_bodyCount; ++i)
 		{
+			
 			b = m_bodies[i];
 			
 			if (b.GetType() != b2Body.b2_dynamicBody)
 				continue;
+				
+			if (b.HasCustomGravity())
+			{
+				var bodyGravity:b2Vec2 = b.GetCustomGravity();
+				//b.m_linearVelocity += step.dt * (gravity + b.m_invMass * b.m_force);
+				b.m_linearVelocity.x += step.dt * (bodyGravity.x + b.m_invMass * b.m_force.x);
+				b.m_linearVelocity.y += step.dt * (bodyGravity.y + b.m_invMass * b.m_force.y);
+			}
+			else
+			{
+				//b.m_linearVelocity += step.dt * (gravity + b.m_invMass * b.m_force);
+				b.m_linearVelocity.x += step.dt * (gravity.x + b.m_invMass * b.m_force.x);
+				b.m_linearVelocity.y += step.dt * (gravity.y + b.m_invMass * b.m_force.y);
+			}
 			
 			// Integrate velocities.
-			//b.m_linearVelocity += step.dt * (gravity + b.m_invMass * b.m_force);
-			b.m_linearVelocity.x += step.dt * (gravity.x + b.m_invMass * b.m_force.x);
-			b.m_linearVelocity.y += step.dt * (gravity.y + b.m_invMass * b.m_force.y);
 			b.m_angularVelocity += step.dt * b.m_invI * b.m_torque;
 			
 			// Apply damping.

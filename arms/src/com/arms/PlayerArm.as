@@ -12,8 +12,7 @@ package com.arms
 		
 		public function PlayerArm() 
 		{
-			var gs:GameState = FlxG.state as GameState;
-			super(10, 10, 10, 10, gs._world);
+			super(10, 10, 10, 40);
 			
 			
 			

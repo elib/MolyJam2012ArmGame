@@ -34,9 +34,12 @@ package com.arms
 			this.add(_environment.GetObstacles());
 			
 			_player = new Player();
-			var arm = new PlayerArm();
+			var arm:PlayerArm = new PlayerArm();
 			this.add(_player);
 			this.add(arm);
+			
+			var armAABB:b2AABB = arm._fixture.GetAABB();
+			//_player.attach(arm, new b2Vec2(0, 0), armAABB.GetExtents());
 		}
 		
 		 

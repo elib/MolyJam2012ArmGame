@@ -1297,6 +1297,24 @@ public class b2Body
 		SynchronizeTransform();
 	}
 
+	
+	public function HasCustomGravity(): Boolean
+	{
+		return m_hasGravity;
+	}
+	
+	public function GetCustomGravity(): b2Vec2
+	{
+		return m_gravity;
+	}
+	
+	public function SetCustomGravity(gravity:b2Vec2): void
+	{
+		this.m_gravity = gravity;
+		m_hasGravity = true;
+	}
+	var m_hasGravity:Boolean = false;
+	var m_gravity:b2Vec2;
 	b2internal var m_flags:uint;
 	b2internal var m_type:int;
 	
