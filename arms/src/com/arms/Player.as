@@ -122,10 +122,6 @@ package com.arms
 				}
 				
 				babyShakenAmount = Math.exp( - (_totalTime - _whenStartedCooldown) / _EXP_COOLDOWN_TIMESCALE);
-				if (babyShakenAmount < _CUTOFF)
-				{
-					babyShakenAmount = 0;	
-				}
 			}
 		}	
 	}
