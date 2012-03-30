@@ -1,0 +1,64 @@
+/*****************************************************************************
+ *
+ * ADOBE SYSTEMS INCORPORATED
+ * Copyright (C) 2010 Adobe Systems Incorporated
+ * All Rights Reserved.
+ *
+ * NOTICE:  Adobe permits you to use, modify, and distribute this file in 
+ * accordance with the terms of the Adobe license agreement accompanying it.  
+ * If you have received this file from a source other than Adobe, then your 
+ * use, modification, or distribution of it requires the prior written 
+ * permission of Adobe.
+ *
+ *****************************************************************************/
+
+<languageVersion: 1.0;>
+ 
+// Pixelate: A simple example to demonstrate the use of the sampling 
+//           function to yield an interesting effect.  The filter uses the 
+//           floor built-in function on the current output coordinate to 
+//           determine the sampling location.
+kernel Pixelate
+<   namespace : "AIF";
+    vendor : "Adobe Systems";
+    version : 2;
+    description : "pixelate an image"; >
+{
+    // An input parameter used to specify the width and height of the 
+    // pixelation.  The parameters come directly from the user by way of the 
+    // UI that gets created for the filter.
+    parameter float radius
+    <minValue: 1.0;
+     maxValue: 100.0;
+     defaultValue: 50.0;
+     >;
+
+    parameter float2 lightPosition
+    <
+        defaultValue:float2(50.0,50.0);
+    >;
+    
+    const float PI = 3.14159265;
+    const float HALF_PI = 1.5707963267;
+
+    input image4 inputImage;
+    output pixel4 outputPixel;
+    void
+    evaluatePixel()
+    {
+        float2 coord = outCoord();
+        
+ 
+        float dist = length(coord - lightPosition);
+
+
+        outputPixel = float4(0.0,0.0,0.0,0.0);
+        float d = dist-radius;
+        float glow = cos(clamp(HALF_PI * d/radius, 0.0, HALF_PI ));
+        outputPixel = sampleNearest(inputImage, coord) * glow;
+        outputPixel.a = 1.0;
+
+        
+                
+    }
+}
