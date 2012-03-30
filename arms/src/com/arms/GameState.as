@@ -14,6 +14,7 @@ package com.arms
 		[Embed(source = "/../../data/fade.pbj", mimeType = "application/octet-stream")] private var FilterCode:Class;
 
 
+		
 		private var _coolShader:Shader = new Shader(new FilterCode());
 		private var _coolFilter:ShaderFilter;
 
@@ -65,17 +66,22 @@ package com.arms
 		{
 			super.postProcess();
 			
-		     FlxG.buffer.applyFilter(FlxG.buffer,new Rectangle(0,0,FlxG.width,FlxG.width),new Point(0,0),_coolFilter);
+		    FlxG.buffer.applyFilter(FlxG.buffer,new Rectangle(0,0,FlxG.width,FlxG.width),new Point(0,0),_coolFilter);
 			
 	
 		}
 		
+		var lightFuzzyness:Number = 0;
 		override public function update():void
 		{
 			super.update();	
-			_coolFilter.shader.data.radius.value = [Math.max(1, _player.babyShakenAmount * 60)];
-
-			_debugBar.scale.x = _player.babyShakenAmount; //int(_player.babyShakenAmount * FlxG.width);
+`			
+			lightFuzzyness += FlxG.elapsed;
+			var playerXY:FlxPoint = _player.getScreenXY()
+			
+			_coolFilter.shader.data.radius.value = [Math.max(_player.babyShakenAmount, 0.1) * 60 + (Math.abs(Math.sin(Math.PI * 2 * lightFuzzyness * Math.random() * 0.5))) * 1.5 ];
+			_coolFilter.shader.data.lightPosition.value = [playerXY.x + _player.frameWidth / 2, playerXY.y + _player.frameHeight / 2];
+			_debugBar.scale.x = _player.babyShakenAmount;
 			
 			
 			FlxU.collide(_player, _environment.GetObstacles());
