@@ -7,12 +7,12 @@ package com.arms
 	 * ...
 	 * @author elibrody
 	 */
-	public class PlayerArm extends B2FlxSprite 
+	public class PlayerArm extends FlxSprite 
 	{
 		
 		public function PlayerArm() 
 		{
-			super(10, 10, 10, 40);
+			super(10, 10);
 			
 			
 			
