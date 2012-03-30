@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="50" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="foreground_colliding" tilewidth="16" tileheight="16">
+  <image source="tiles.png" width="160" height="160"/>
+ </tileset>
+ <layer name="Background" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <layer name="Foreground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <layer name="Collision" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztz7EJADAIRUHXyP6L2limDKjhDn6rvAjgd6e2nY5Z/3W8oeN+p3sAAAAAAAAA7JRVYAVH
+  </data>
+ </layer>
+ <objectgroup name="Metadata" width="50" height="50">
+  <object name="spawn" x="208" y="128" width="32" height="32"/>
+ </objectgroup>
+</map>
