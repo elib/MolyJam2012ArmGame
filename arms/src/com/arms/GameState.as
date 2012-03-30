@@ -14,8 +14,8 @@ package com.arms
 		[Embed(source = "/../../data/fade.pbj", mimeType = "application/octet-stream")] private var FilterCode:Class;
 
 
-		var _coolShader:Shader = new Shader(new FilterCode());
-		var _coolFilter:ShaderFilter;
+		private var _coolShader:Shader = new Shader(new FilterCode());
+		private var _coolFilter:ShaderFilter;
 
 		public function GameState() 
 		{
@@ -26,7 +26,7 @@ package com.arms
 			_coolFilter.shader.data.radius.value = [50];
 			
 			
-			this.filters = [_coolFilter]
+			this.filters = [_coolFilter];
 
 
 		}
@@ -43,21 +43,21 @@ package com.arms
 			
 			
 			_debugBar = new FlxSprite(0, FlxG.height - 10);
-			_debugBar.makeGraphic(FlxG.width, 10, 0xffff0000);
+			_debugBar.createGraphic(FlxG.width, 10, 0xffff0000);
 			_debugBar.scale.x = 0.0;
 			this.add(_debugBar);
 			
-			FlxG.camera.follow(_player, 0.2);
-			//FlxG.followBounds(_environment.GetObstacles().left, _environment.GetObstacles().top
+			FlxG.follow(_player, 2);
+			FlxG.followBounds(_environment.GetObstacles().left, _environment.GetObstacles().top, _environment.GetObstacles().right, _environment.GetObstacles().bottom);
 			
 		}
 		
 		 
-		override public function draw():void 
+		override public function postProcess():void 
 		{
-			super.draw();
+			super.postProcess();
 			
-		     //FlxG.buffer.applyFilter(FlxG.buffer,new Rectangle(0,0,FlxG.width,FlxG.width),new Point(0,0),_coolFilter);
+		     FlxG.buffer.applyFilter(FlxG.buffer,new Rectangle(0,0,FlxG.width,FlxG.width),new Point(0,0),_coolFilter);
 			
 	
 		}
@@ -70,7 +70,7 @@ package com.arms
 			_debugBar.scale.x = _player.babyShakenAmount; //int(_player.babyShakenAmount * FlxG.width);
 			
 			
-			FlxG.collide(_player, _environment.GetObstacles());
+			FlxU.collide(_player, _environment.GetObstacles());
 
 		}
 	}

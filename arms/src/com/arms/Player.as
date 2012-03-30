@@ -25,7 +25,7 @@ package com.arms
 		{
 			super(0,0);
 			
-			makeGraphic(16, 16, 0xff0000ff);
+			createGraphic(16, 16, 0xff0000ff);
 			
 			_numFramesBabyShaken = 0;
 			babyShakenAmount = 0;
