@@ -43,18 +43,22 @@ package com.arms
 			
 			
 			_debugBar = new FlxSprite(0, FlxG.height - 10);
-			_debugBar.createGraphic(FlxG.width, 10, 0xffff0000);
+			_debugBar.makeGraphic(FlxG.width, 10, 0xffff0000);
 			_debugBar.scale.x = 0.0;
 			this.add(_debugBar);
+			
+			FlxG.camera.follow(_player, 0.2);
+			//FlxG.followBounds(_environment.GetObstacles().left, _environment.GetObstacles().top
 			
 		}
 		
 		 
-		override public function postProcess():void 
+		override public function draw():void 
 		{
-			super.postProcess();
-			FlxG.buffer.applyFilter(FlxG.buffer,new Rectangle(0,0,FlxG.width,FlxG.width),new Point(0,0),_coolFilter);
-
+			super.draw();
+			
+		     //FlxG.buffer.applyFilter(FlxG.buffer,new Rectangle(0,0,FlxG.width,FlxG.width),new Point(0,0),_coolFilter);
+			
 	
 		}
 		
@@ -64,6 +68,9 @@ package com.arms
 			_coolFilter.shader.data.radius.value = [Math.max(1, _player.babyShakenAmount * 60)];
 
 			_debugBar.scale.x = _player.babyShakenAmount; //int(_player.babyShakenAmount * FlxG.width);
+			
+			
+			FlxG.collide(_player, _environment.GetObstacles());
 
 		}
 	}
