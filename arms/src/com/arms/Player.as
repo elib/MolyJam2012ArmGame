@@ -2,7 +2,7 @@ package com.arms
 {
 	import org.flixel.*;
 	
-	public class Player extends FlxGroup
+	public class Player extends FlxSprite
 	{
 		
 		public function Player() 
