@@ -8,9 +8,9 @@ package com.arms
 	{
 		private var _numFramesBabyShaken:int;
 		public var babyShakenAmount:Number;
-		public var babyRageAmount: Number;
-		private var _babyRagePeak:Number;
-		private var _timeSinceLastShake:Number;
+		public var babyRageAmount: Number = 0;
+		private var _babyRagePeak:Number = 0;
+		private var _timeSinceLastShake:Number = 0;
 		
 		private const _MAX_FRAMES_SHAKEN:int = 20;
 		private const _EXP_WARMUP_TIMESCALE:Number = 2; //units are [s]
