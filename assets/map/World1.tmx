@@ -15,10 +15,10 @@
  </layer>
  <layer name="Collision" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztz7ENACEMA0DWYP9Fv4GG4qtgRehOSmvHYwBkzHVVWUnzuMrclOrfz+yEmxt2fsLtHjt69djRq8eOXj0v7UgdAAAAAAAA/z5/hQV5
+   eJzt11EKgCAQBUDPUfe/Z/QhlBCkuIvFDOxP0Oqzgq0UVrRf6svO/W/lnmdran9ZI/fMOr8/PItKjrG12vdwZu8M9buJkpkjkhx9onNE96+iz0uOPnKs0T9jncz5KjrH03zbXh+dZzP+Da77AgAAAAAA+LIDhcgKOA==
   </data>
  </layer>
  <objectgroup name="Metadata" width="50" height="50">
-  <object name="spawn" type="spawn" x="208" y="128" width="32" height="32"/>
+  <object name="spawn" type="spawn" x="80" y="224" width="32" height="32"/>
  </objectgroup>
 </map>

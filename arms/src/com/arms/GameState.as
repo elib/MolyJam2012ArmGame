@@ -75,7 +75,7 @@ package com.arms
 		override public function update():void
 		{
 			super.update();	
-`			
+			
 			lightFuzzyness += FlxG.elapsed;
 			var playerXY:FlxPoint = _player.getScreenXY()
 			
