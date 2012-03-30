@@ -44,7 +44,8 @@ package com.arms
 			
 			if (babyShakenThisFrame)
 			{
-				_numFramesBabyShaken += 10;
+				_numFramesBabyShaken ++;
+				//_numFramesBabyShaken += 10;
 				if (_numFramesBabyShaken > _MAX_FRAMES_SHAKEN)
 				{
 					_numFramesBabyShaken = _MAX_FRAMES_SHAKEN;
@@ -62,19 +63,9 @@ package com.arms
 			var amount:Number;
 			if (_numFramesBabyShaken > 0)
 			{
-				//add to the actual baby shaken amount
+				var remaining:Number = 1 - babyShakenAmount;
+				babyShakenAmount += remaining / 4;
 				_whenStartedCooldown = 0;
-				if (_whenStartedWarmup == 0)
-				{
-					//REVERSE LOOKUP
-					_whenStartedWarmup = (_EXP_WARMUP_TIMESCALE * Math.log(1 - babyShakenAmount) + _totalTime);
-				}
-				
-				babyShakenAmount = 1.0 - Math.exp( - (_totalTime - _whenStartedWarmup) / _EXP_WARMUP_TIMESCALE);
-				if (babyShakenAmount > (1 - _CUTOFF))
-				{
-					babyShakenAmount = 1;	
-				}
 			}
 			else
 			{
