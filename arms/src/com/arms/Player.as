@@ -8,6 +8,9 @@ package com.arms
 	{
 		private var _numFramesBabyShaken:int;
 		public var babyShakenAmount:Number;
+		public var babyRageAmount: Number;
+		private var _babyRagePeak:Number;
+		private var _timeSinceLastShake:Number;
 		
 		private const _MAX_FRAMES_SHAKEN:int = 20;
 		private const _EXP_WARMUP_TIMESCALE:Number = 2; //units are [s]
@@ -30,6 +33,7 @@ package com.arms
 			
 			_numFramesBabyShaken = 0;
 			babyShakenAmount = 0;
+			babyRageAmount = 0;
 			
 			drag.x = drag.y = 200;
 		}
@@ -85,9 +89,40 @@ package com.arms
 			{
 				//SHAKE THAT BABY
 				babyShakenThisFrame = true;
+				_timeSinceLastShake = 0;
 				//play sound here, shaking baby
 			}
+			else
+			{
+				_timeSinceLastShake += FlxG.elapsed;
+			}
 			
+			
+			
+			updateBabyShake(babyShakenThisFrame);
+			updateBabyRage(babyShakenThisFrame);
+		}
+		
+		private function updateBabyRage(babyShakenThisFrame:Boolean): void
+		{
+			if (babyShakenThisFrame)
+			{
+				babyRageAmount += 0.11;
+				_babyRagePeak = babyRageAmount;
+			}
+			else
+			{
+				babyRageAmount  = _babyRagePeak - _timeSinceLastShake/6;
+			}
+			
+			
+			// clamp
+			babyRageAmount = Math.max(Math.min(babyRageAmount, 1), 0);
+			
+			
+		}
+		private function updateBabyShake(babyShakenThisFrame:Boolean): void
+		{
 			if (babyShakenThisFrame)
 			{
 				_numFramesBabyShaken ++;
