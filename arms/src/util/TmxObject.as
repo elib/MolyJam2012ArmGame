@@ -4,6 +4,7 @@
  ******************************************************************************/
 package util
 {
+	import org.flixel.FlxPoint;
 	public class TmxObject
 	{
 		public var group:TmxObjectGroup;
@@ -17,6 +18,8 @@ package util
 		public var custom:TmxPropertySet;
 		public var shared:TmxPropertySet;
 		
+		public var polyline:Array;
+		
 		public function TmxObject(source:XML, parent:TmxObjectGroup)
 		{
 			group = parent;
@@ -26,6 +29,22 @@ package util
 			y = source.@y; 
 			width = source.@width; 
 			height = source.@height;
+			
+			polyline = new Array();
+			
+			var childrenpoly:XMLList = source.child("polyline");
+			if (childrenpoly.length() > 0)
+			{
+				var polychild:XML = childrenpoly[0];
+				var strpoly:String = polychild.@points;
+				var points:Array = strpoly.split(" ");
+				for each(var ptstr:String in points)
+				{
+					var pair:Array = ptstr.split(",");
+					polyline.push(new FlxPoint(int(pair[0]) + x, int(pair[1]) + y));
+				}
+			}
+			
 			//resolve inheritence
 			shared = null;
 			gid = -1;

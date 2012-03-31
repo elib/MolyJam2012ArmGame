@@ -46,9 +46,9 @@ package com.arms
 			
 			_frogs = new FlxGroup();
 			this.add(_frogs);
-			for each(var frogPoint:FlxPoint in _environment.frogPoints)
+			for (var i:int = 0; i < _environment.frogPoints.length; i++)
 			{
-				var frog:Frog = new Frog(frogPoint);
+				var frog:Frog = new Frog(_environment.frogPoints[i], _environment.frogPaths[i]);
 				_frogs.add(frog);
 			}
 			

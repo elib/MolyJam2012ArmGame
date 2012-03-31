@@ -14,6 +14,7 @@ package com.arms
 		
 		public var spawnPoints:Array;
 		public var frogPoints:Array;
+		public var frogPaths:Array;
 
 		
 		public function Environment():void
@@ -65,6 +66,7 @@ package com.arms
 			
 			spawnPoints = new Array();
 			frogPoints = new Array();
+			frogPaths = new Array();
 			
 			var group:TmxObjectGroup = tmx_map.getObjectGroup('Metadata');
 			for each(var object:TmxObject in group.objects)
@@ -73,11 +75,13 @@ package com.arms
 		
 		protected function spawnObject(obj:TmxObject):void
 		{
+			/*
 			//snap to grid
 			obj.x = obj.x - (obj.x % Arms.TILESIZE);
 			obj.y = obj.y - (obj.y % Arms.TILESIZE);
 			obj.width = obj.width - (obj.width % Arms.TILESIZE);
 			obj.height = obj.height - (obj.height % Arms.TILESIZE);
+			*/
 			
 			//Add game objects based on the 'type' property
 			switch(obj.type)
@@ -90,6 +94,7 @@ package com.arms
 				case "frog":
 				{
 					frogPoints.push(new FlxPoint(obj.x, obj.y));
+					frogPaths.push(new FlxPath(obj.polyline));
 					return;
 				}
 			}
