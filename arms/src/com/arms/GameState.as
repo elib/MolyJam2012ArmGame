@@ -9,28 +9,24 @@ package com.arms
 	public class GameState extends FlxState
 	{
 		public var _player:Player;
+		private var _frogs:FlxGroup;
+		
 		private var _environment:Environment;
 		private var _hud: Hud;
 		private var _debugBar:FlxSprite;
-		[Embed(source = "/../../data/fade.pbj", mimeType = "application/octet-stream")] private var FilterCode:Class;
-
-
 		
+		//effects
+		[Embed(source = "/../../data/fade.pbj", mimeType = "application/octet-stream")] private var FilterCode:Class;
 		private var _coolShader:Shader = new Shader(new FilterCode());
 		private var _coolFilter:ShaderFilter;
 
 		public function GameState() 
 		{
-			
 			super();
-			_coolFilter = new ShaderFilter(_coolShader);
 			
+			_coolFilter = new ShaderFilter(_coolShader);	
 			_coolFilter.shader.data.lightPosition.value = [100, 150];
 			_coolFilter.shader.data.radius.value = [50];
-			
-			//FlxG._game.filters = [_coolFilter];
-
-
 		}
 		
 		override public function create():void 
@@ -48,12 +44,18 @@ package com.arms
 			_hud = new Hud();
 			this.add(_hud);
 			
+			_frogs = new FlxGroup();
+			this.add(_frogs);
+			for each(var frogPoint:FlxPoint in _environment.frogPoints)
+			{
+				var frog:Frog = new Frog(frogPoint);
+				_frogs.add(frog);
+			}
+			
+			
+			//setup camera rules
 			FlxG.camera.follow(_player, FlxCamera.STYLE_TOPDOWN);
 			_environment.follow();
-			//FlxG.camera.setBounds(_environment.GetObstacles().left, _environment.GetObstacles()..top, _environment.GetObstacles().right, _environment.GetObstacles().bottom);
-			
-			//FlxG.follow(_player, 2);
-			//FlxG.followBounds(_environment.GetObstacles().left, _environment.GetObstacles().top, _environment.GetObstacles().right, _environment.GetObstacles().bottom);
 			
 		}
 		

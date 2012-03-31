@@ -11,7 +11,9 @@ package com.arms
 		protected var _map:FlxTilemap;
 		protected var _foremap:FlxTilemap;
 		protected var _bgmap:FlxTilemap;
+		
 		public var spawnPoints:Array;
+		public var frogPoints:Array;
 
 		
 		public function Environment():void
@@ -62,6 +64,7 @@ package com.arms
 			this.add(_map);
 			
 			spawnPoints = new Array();
+			frogPoints = new Array();
 			
 			var group:TmxObjectGroup = tmx_map.getObjectGroup('Metadata');
 			for each(var object:TmxObject in group.objects)
@@ -84,6 +87,11 @@ package com.arms
 					spawnPoints.push(new FlxPoint(obj.x, obj.y));
 					return;
 				}
+				case "frog":
+				{
+					frogPoints.push(new FlxPoint(obj.x, obj.y));
+					return;
+				}
 			}
 		}
 		
@@ -96,7 +104,5 @@ package com.arms
 		{
 			return _map.heightInTiles;
 		}
-		
 	}
-
 }
