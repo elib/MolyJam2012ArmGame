@@ -2,7 +2,8 @@ package
 {
 	import org.flixel.*;
 	import com.arms.*;
-	[SWF(width="640", height="480", backgroundColor="#000000")]
+	[SWF(width = "640", height = "480", backgroundColor = "#000000")]
+	[Frame(factoryClass = "Preloader")]
  
 	public class Arms extends FlxGame
 	{

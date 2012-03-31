@@ -15,7 +15,7 @@
  </layer>
  <layer name="Collision" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt11EKgCAQBUDPUfe/Z/QhlBCkuIvFDOxP0Oqzgq0UVrRf6svO/W/lnmdran9ZI/fMOr8/PItKjrG12vdwZu8M9buJkpkjkhx9onNE96+iz0uOPnKs0T9jncz5KjrH03zbXh+dZzP+Da77AgAAAAAA+LIDhcgKOA==
+   eJzt10EKgCAQBVAPYt7/mG2lRVCNk8p74CZqhp+SVgozqt1YWX0wjuD7It9fC6z1Nzne9bquu8jaGUZ/T7JytMH1M+dj5fpZfeSYq48cc/XZIUfm+Wr0Hvj1vNtfbzfPj9wHd/n/AAAAAAAAOAHv8wrI
   </data>
  </layer>
  <objectgroup name="Metadata" width="50" height="50">

@@ -35,12 +35,13 @@ package com.arms
 			babyShakenAmount = 0;
 			babyRageAmount = 0;
 			
-			drag.x = drag.y = 200;
+			drag.x = drag.y = 250;
 		}
 		
 		override public function update():void 
 		{
 			super.update();
+			
 			_totalTime += FlxG.elapsed;
 			
 			
@@ -96,8 +97,6 @@ package com.arms
 			{
 				_timeSinceLastShake += FlxG.elapsed;
 			}
-			
-			
 			
 			updateBabyShake(babyShakenThisFrame);
 			updateBabyRage(babyShakenThisFrame);

@@ -49,6 +49,7 @@ package com.arms
 			this.add(_hud);
 			
 			FlxG.camera.follow(_player, FlxCamera.STYLE_TOPDOWN);
+			_environment.follow();
 			//FlxG.camera.setBounds(_environment.GetObstacles().left, _environment.GetObstacles()..top, _environment.GetObstacles().right, _environment.GetObstacles().bottom);
 			
 			//FlxG.follow(_player, 2);
@@ -72,20 +73,25 @@ package com.arms
 
 		}
 		
-		var lightFuzzyness:Number = 0;
+		private var lightFuzzyness:Number = 0;
 		override public function update():void
 		{
 			super.update();	
+			
+			FlxG.collide(_player, _environment.GetObstacles(), PlayerHit);
+			
+			//filtering goodness!
 			lightFuzzyness += FlxG.elapsed;
 			var playerXY:FlxPoint = _player.getScreenXY()
 			
 			_coolFilter.shader.data.radius.value = [Math.max(_player.babyShakenAmount, 0.1) * 60 + (Math.abs(Math.sin(Math.PI * 2 * lightFuzzyness * Math.random() * 0.5))) * 1.5 ];
 			_coolFilter.shader.data.lightPosition.value = [playerXY.x + _player.frameWidth / 2, playerXY.y + _player.frameHeight / 2];
 			//debugBar.scale.x = _player.babyShakenAmount;
-			
-			
-			FlxG.collide(_player, _environment.GetObstacles());
-
+		}
+		
+		private function PlayerHit(obj1:FlxObject, obj2:FlxObject):void
+		{
+			FlxG.log("" + obj1 + " hit " + obj2);
 		}
 	}
 
