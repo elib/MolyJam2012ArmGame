@@ -15,14 +15,15 @@
  </layer>
  <layer name="Collision" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt1kEKwCAMRFEPYr3/MUsXgnSldqJT+Q/clcQRG0wJjnKz/iwPrEv8nfL8irDWbuSY6/W+d8raK0TPk1U5SmDtkRmj6BWld4/uOXqdkOPpr7jbDjkU/4xTjmrmHVDniZMvbysno/tq8wEAAAAAAAAAAOB8N3RjC8Q=
+   eJzt1dEKgCAMhWEfxHz/x+wqCKPJmatm/B/sJk03WKsUZFRPkZ2VaxViC943E7128zwrq3dWq8Ozppw/05/KPZ41NVfP+wqrp9Q6rPwsrczVcNxl5abMGK+Ic0Z1KD3hFXnGlzzfdHRPRJidTX+pI4tjnij7M9bS5/X0fHzL6N+8Sh0AAAAAAAAAAAC42gG4rhL2
   </data>
  </layer>
  <objectgroup name="Metadata" width="50" height="50">
   <object name="spawn" type="spawn" x="80" y="80" width="32" height="32"/>
   <object name="1" type="frog" x="384" y="16" width="272" height="16"/>
-  <object name="1" type="frog" x="512" y="160">
+  <object name="1" type="frog" x="528" y="192">
    <polyline points="0,0 64,0 64,-64 128,-64 128,-112 192,-112 192,-48 96,-48 96,32 0,32 0,0"/>
   </object>
+  <object name="1" type="powerup" x="720" y="160" width="16" height="16"/>
  </objectgroup>
 </map>

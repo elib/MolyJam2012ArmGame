@@ -29,7 +29,7 @@ package com.arms
 			super(0, 0);
 			kill();
 			
-			makeGraphic(16, 16, 0xff0000ff);
+			makeGraphic(16, 16, 0xff00ff00);
 			
 			_numFramesBabyShaken = 0;
 			babyShakenAmount = 0;

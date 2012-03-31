@@ -15,6 +15,7 @@ package com.arms
 		public var spawnPoints:Array;
 		public var frogPoints:Array;
 		public var frogPaths:Array;
+		public var powerupPoints:Array;
 
 		
 		public function Environment():void
@@ -67,6 +68,7 @@ package com.arms
 			spawnPoints = new Array();
 			frogPoints = new Array();
 			frogPaths = new Array();
+			powerupPoints = new Array();
 			
 			var group:TmxObjectGroup = tmx_map.getObjectGroup('Metadata');
 			for each(var object:TmxObject in group.objects)
@@ -95,6 +97,11 @@ package com.arms
 				{
 					frogPoints.push(new FlxPoint(obj.x, obj.y));
 					frogPaths.push(new FlxPath(obj.polyline));
+					return;
+				}
+				case "powerup":
+				{
+					powerupPoints.push(new FlxPoint(obj.x, obj.y));
 					return;
 				}
 			}

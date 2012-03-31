@@ -1,6 +1,7 @@
 package com.arms 
 {
 	import com.hud.Hud;
+	import flash.display.PixelSnapping;
 	import org.flixel.*;
 	import flash.display.Shader;
 	import flash.filters.ShaderFilter;
@@ -10,6 +11,7 @@ package com.arms
 	{
 		public var _player:Player;
 		private var _frogs:FlxGroup;
+		private var _powerups:FlxGroup;
 		
 		private var _environment:Environment;
 		private var _hud: Hud;
@@ -34,7 +36,7 @@ package com.arms
 			super.create();
 			
 			_environment = new Environment();
-			this.add(_environment.GetObstacles());
+			this.add(_environment);
 			
 			_player = new Player();
 			this.add(_player);
@@ -50,6 +52,13 @@ package com.arms
 			{
 				var frog:Frog = new Frog(_environment.frogPoints[i], _environment.frogPaths[i]);
 				_frogs.add(frog);
+			}
+			
+			_powerups = new FlxGroup();
+			this.add(_powerups);
+			for each(var powerpoint:FlxPoint in _environment.powerupPoints)
+			{
+				_powerups.add(new Powerup(powerpoint));
 			}
 			
 			
